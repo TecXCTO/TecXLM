@@ -63,8 +63,9 @@ def estimate_loss():
             logits, loss = model(X, Y)
             losses[k] = loss.item()
         out[split] = losses.mean()
-    p = model.train()
-    print(p) #
+    model.train()
+    # p = model.train()
+    # print(p) #
     return out
 
 class Head(nn.Module):
