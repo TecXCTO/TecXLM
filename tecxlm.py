@@ -139,7 +139,7 @@ class Block(nn.Module):
         x = x + self.ffwd(self.ln2(x))
         return x
 
-class GPTLanguageModel(nn.Module):
+class TecXLanguageModel(nn.Module):
 
     def __init__(self):
         super().__init__()
@@ -199,7 +199,7 @@ class GPTLanguageModel(nn.Module):
             idx = torch.cat((idx, idx_next), dim=1) # (B, T+1)
         return idx
 
-model = GPTLanguageModel()
+model = TecXLanguageModel()
 m = model.to(device)
 # print the number of parameters in the model
 print(sum(p.numel() for p in m.parameters())/1e6, 'M parameters')
@@ -222,7 +222,7 @@ for iter in range(max_iters):
     optimizer.zero_grad(set_to_none=True)
     loss.backward()
     optimizer.step()
-
+m.save(TecXLM)
 # generate from the model
 context = torch.zeros((1, 1), dtype=torch.long, device=device)
 print(decode(m.generate(context, max_new_tokens=500)[0].tolist()))
