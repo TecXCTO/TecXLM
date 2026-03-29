@@ -67,5 +67,6 @@ if __name__=="__main__":
         token_embeddings = token_embedding_layer(x)
         pos_embeddings = pos_embedding_layer(torch.arange(max_length))
         input_embeddings = token_embeddings + pos_embeddings
-        break
+        print(input_embeddings)
+        #break
     print(input_embeddings.shape)
