@@ -53,7 +53,9 @@ if __name__=="__main__":
     context_length = 1024
     
     token_embedding_layer = torch.nn.Embedding(vocab_size, output_dim)
+    print(f"token_embedding_layer={token_embedding_layer}") #
     pos_embedding_layer = torch.nn.Embedding(context_length, output_dim)
+    print(f"pos_embedding_layer={pos_embedding_layer}") #
     batch_size = 8
     max_length = 4
     dataloader = create_dataloader_v1(
@@ -62,10 +64,15 @@ if __name__=="__main__":
         max_length=max_length,
         stride=max_length
     )
+    print(f"dataloader={dataloader}") #
     for batch in dataloader:
+        print(f"batch={batch}") #
         x, y = batch
+        print(f"x={x}, \n y={y}") #
         token_embeddings = token_embedding_layer(x)
+        print(f"token_embeddings={token_embeddings}") #
         pos_embeddings = pos_embedding_layer(torch.arange(max_length))
+        print(f"pos_embeddings={pos_embeddings}") #
         input_embeddings = token_embeddings + pos_embeddings
         print(input_embeddings)
         #break
