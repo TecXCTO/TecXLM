@@ -16,9 +16,12 @@ class GPTDatasetV1(Dataset):
 
         # Tokenize the entire text
         token_ids = tokenizer.encode(txt, allowed_special={"<|endoftext|>"})
+        print(f"token_ids={token_ids}") #
+        print(f"length of token_ids={len(token_ids)}") #
 
         # Use a sliding window to chunk the book into overlapping sequences of max_length
         for i in range(0, len(token_ids) - max_length, stride):
+            print(f"i={i}") #
             input_chunk = token_ids[i:i + max_length]
             target_chunk = token_ids[i + 1: i + max_length + 1]
             self.input_ids.append(torch.tensor(input_chunk))
