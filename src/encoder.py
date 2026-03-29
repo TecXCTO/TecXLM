@@ -46,7 +46,7 @@ def create_dataloader_v1(txt, batch_size, max_length, stride,
     return dataloader
 
 
-with open("../input.txt", "r", encoding="utf-8") as f:
+with open("input.txt", "r", encoding="utf-8") as f:
     raw_text = f.read()
 
 vocab_size = 50257
