@@ -247,8 +247,11 @@ def main():
     torch.manual_seed(123)
     model = GPTModel(GPT_CONFIG_124M)
     model.eval()  # disable dropout
-
-    start_context = "Hello, I am"
+    with open("input.txt", "r", encoding="utf-8") as f:
+        raw_text = f.read()
+    start_context = raw_text
+    
+    # start_context = "Hello, I am"
 
     tokenizer = tiktoken.get_encoding("gpt2")
     encoded = tokenizer.encode(start_context)
