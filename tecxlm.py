@@ -225,7 +225,7 @@ for iter in range(max_iters):
     optimizer.zero_grad(set_to_none=True)
     loss.backward()
     optimizer.step()
-torch.save(m.state_dict(),"TecXLM.pth")
+torch.save(m.state_dict(),"../TecXLM.pth")
 # torch.save(m.state_dict(),"TecXLM.pt")
 # generate from the model
 context = torch.zeros((1, 1), dtype=torch.long, device=device)
