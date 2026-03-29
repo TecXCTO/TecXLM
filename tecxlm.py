@@ -44,6 +44,7 @@ val_data = data[n:]
 
 # data loading
 def get_batch(split):
+    print(f"In the get_batch") #
     # generate a small batch of data of inputs x and targets y
     data = train_data if split == 'train' else val_data
     ix = torch.randint(len(data) - block_size, (batch_size,))
@@ -54,6 +55,7 @@ def get_batch(split):
 
 @torch.no_grad()
 def estimate_loss():
+    print(f" In the estimate_loss function ") #
     out = {}
     model.eval()
     for split in ['train', 'val']:
@@ -69,6 +71,7 @@ def estimate_loss():
     return out
 
 class Head(nn.Module):
+    print(f" In the  Head Class") #
     """ one head of self-attention """
 
     def __init__(self, head_size):
@@ -81,6 +84,7 @@ class Head(nn.Module):
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x):
+        print(f" In the  Head Class's forward function") #
         # input of size (batch, time-step, channels)
         # output of size (batch, time-step, head size)
         B,T,C = x.shape
@@ -97,6 +101,7 @@ class Head(nn.Module):
         return out
 
 class MultiHeadAttention(nn.Module):
+    print(f" In the MultiHeadAttention Class") #
     """ multiple heads of self-attention in parallel """
 
     def __init__(self, num_heads, head_size):
@@ -106,11 +111,13 @@ class MultiHeadAttention(nn.Module):
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x):
+        print(f" In the MultiHeadAttention Class's forward function. ") #
         out = torch.cat([h(x) for h in self.heads], dim=-1)
         out = self.dropout(self.proj(out))
         return out
 
 class FeedFoward(nn.Module):
+    print(f" In the FeedFoward Class") #
     """ a simple linear layer followed by a non-linearity """
 
     def __init__(self, n_embd):
@@ -123,9 +130,11 @@ class FeedFoward(nn.Module):
         )
 
     def forward(self, x):
+        print(f" In the FeedFoward Class's forward function.") #
         return self.net(x)
 
 class Block(nn.Module):
+    print(f" In the Block Class") #
     """ Transformer block: communication followed by computation """
 
     def __init__(self, n_embd, n_head):
@@ -138,12 +147,13 @@ class Block(nn.Module):
         self.ln2 = nn.LayerNorm(n_embd)
 
     def forward(self, x):
+        print(f" In the Block Class's forward function.") #
         x = x + self.sa(self.ln1(x))
         x = x + self.ffwd(self.ln2(x))
         return x
 
 class TecXLanguageModel(nn.Module):
-
+    print(f" In the TecXLanguageModel Class") #
     def __init__(self):
         super().__init__()
         # each token directly reads off the logits for the next token from a lookup table
@@ -157,6 +167,7 @@ class TecXLanguageModel(nn.Module):
         self.apply(self._init_weights)
 
     def _init_weights(self, module):
+        print(f" In the TecXLanguageModel Class's _init_weights function.") #
         if isinstance(module, nn.Linear):
             torch.nn.init.normal_(module.weight, mean=0.0, std=0.02)
             if module.bias is not None:
@@ -165,6 +176,7 @@ class TecXLanguageModel(nn.Module):
             torch.nn.init.normal_(module.weight, mean=0.0, std=0.02)
 
     def forward(self, idx, targets=None):
+        print(f" In the TecXLanguageModel Class's forward function.") #
         B, T = idx.shape
 
         # idx and targets are both (B,T) tensor of integers
@@ -186,6 +198,7 @@ class TecXLanguageModel(nn.Module):
         return logits, loss
 
     def generate(self, idx, max_new_tokens):
+        print(f" In the TecXLanguageModel Class's generate function.") #
         # idx is (B, T) array of indices in the current context
         for _ in range(max_new_tokens):
             # crop idx to the last block_size tokens
