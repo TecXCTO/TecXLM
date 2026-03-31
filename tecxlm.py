@@ -152,7 +152,8 @@ class Block(nn.Module):
         x = x + self.ffwd(self.ln2(x))
         return x
 
-class TecXLanguageModel(nn.Module):
+#class TecXLanguageModel(nn.Module):
+class TecXModel(nn.Module):
     print(f" In the TecXLanguageModel Class") #
     def __init__(self):
         super().__init__()
@@ -163,7 +164,7 @@ class TecXLanguageModel(nn.Module):
         self.ln_f = nn.LayerNorm(n_embd) # final layer norm
         self.lm_head = nn.Linear(n_embd, vocab_size)
 
-        # better init, not covered in the original GPT video, but important, will cover in followup video
+        # better init, not covered in the original TecX video, but important, will cover in followup video
         self.apply(self._init_weights)
 
     def _init_weights(self, module):
@@ -215,7 +216,8 @@ class TecXLanguageModel(nn.Module):
             idx = torch.cat((idx, idx_next), dim=1) # (B, T+1)
         return idx
 
-model = TecXLanguageModel()
+model = TecXModel()
+#model = TecXLanguageModel()
 m = model.to(device)
 # print the number of parameters in the model
 print(sum(p.numel() for p in m.parameters())/1e6, 'M parameters')
