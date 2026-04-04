@@ -14,7 +14,7 @@ Use sys.stdout.write and flush() to make the characters appear instantly on the 
 context_list = [stoi[c] for c in user_prompt if c in stoi]
 context = torch.tensor([context_list], dtype=torch.long, device=device)
 
-print(f"\n[TEC-X GPT]: ", end="")
+print(f"\n[TECX LM]: ", end="")
 sys.stdout.flush()
 
 with torch.no_grad():
@@ -28,3 +28,81 @@ with torch.no_grad():
         time.sleep(0.02) 
 
 print("\n" + "-"*30)
+
+"""
+To make your model interactive, you can use Python’s input() function. This will pause the script and wait for you to type a "seed" (starting text) before the model begins generating.
+Add this block to the bottom of your tecxlmgenerate.py script:
+Interactive Generation Code
+
+"""
+import torch
+
+# Ensure your model is in evaluation mode
+model.eval()
+
+print("-" * 30)
+print("TecX LLM Generation Mode")
+print("-" * 30)
+
+while True:
+    # 1. Get custom text from the user
+    user_input = input("\nEnter your starting text (or type 'exit' to quit): ")
+    
+    if user_input.lower() == 'exit':
+        break
+
+    # 2. Convert text to numbers using your encode function
+    # Handle characters the model hasn't seen (OOD) to avoid crashes
+    encoded_input = [stoi[c] for c in user_input if c in stoi]
+    
+    if not encoded_input:
+        print("Error: None of those characters are in the model's vocabulary!")
+        continue
+
+    # 3. Create the input tensor [Batch Size, Time]
+    # .unsqueeze(0) adds the batch dimension (size 1)
+    context = torch.tensor(encoded_input, dtype=torch.long, device=device).unsqueeze(0)
+
+    # 4. Generate and Decode
+    print("\nGenerating...")
+    # Adjust max_new_tokens for longer or shorter responses
+    generated_indices = model.generate(context, max_new_tokens=200)[0].tolist()
+    
+    response = decode(generated_indices)
+    print(f"\nModel Output:\n{response}")
+    print("-" * 30)
+
+"""
+The Interactive Loop
+This loop will ask for your text, handle the encoding, and call the function above.
+
+"""
+# Set the device (CPU or GPU)
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+model.to(device)
+
+print("\n--- TecX LLM Interactive Session ---")
+
+while True:
+    prompt = input("\n[You]: ")
+    if prompt.lower() in ['exit', 'quit']:
+        break
+        
+    length = input("How many tokens to generate? (default 100): ")
+    num_tokens = int(length) if length.isdigit() else 100
+
+    # Encode prompt, ignoring characters not in training vocab
+    context_indices = [stoi[c] for c in prompt if c in stoi]
+    
+    if not context_indices:
+        print("Warning: None of those characters exist in my vocabulary. Starting with empty seed.")
+        context = torch.zeros((1, 1), dtype=torch.long, device=device)
+    else:
+        context = torch.tensor([context_indices], dtype=torch.long, device=device)
+
+    # Generate
+    print("\n[Model]: ", end="")
+    # We use [0] to extract the first batch and convert to list for decoding
+    out_indices = model.generate(context, max_new_tokens=num_tokens)[0].tolist()
+    print(decode(out_indices))
+    
