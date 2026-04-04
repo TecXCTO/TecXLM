@@ -28,7 +28,7 @@ while True:
     # 1. Get custom text from the user
     #user_input = input("\nEnter your starting text (or type 'exit' to quit): ")
     user_prompt=input("\nEnter your starting text (or type 'exit' to quit): ")
-    if user_input.lower() == 'exit':
+    if user_prompt.lower() == 'exit':
         break
     # Encode and setup context
     context_list = [stoi[c] for c in user_prompt if c in stoi]
