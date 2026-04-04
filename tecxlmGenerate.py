@@ -15,7 +15,7 @@ class TecXModelGen(TecXModel):
   def init():
     super.init()
 print(f"tecxmodelgen created")
-model = TecXModel()
+model = TecXModel(vocab_size=71)
 #model = TecXModelGen()
 print(f"model veriable creating")
 # torch.save(model.state_dict(),"../TecXLM.pth")
