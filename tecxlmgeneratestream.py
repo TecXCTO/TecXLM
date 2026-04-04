@@ -1,8 +1,23 @@
 import sys
 import time
+import datetime
+import torch
+"""
+1. Set Up the Logger
+Add this at the top of your tecxlmgenerate.py script. It creates a file named generation_logs.txt and appends new conversations to the bottom.
+
+"""
 
 
-
+def log_conversation(prompt, response):
+    with open("generation_logs.txt", "a", encoding="utf-8") as f:
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        f.write(f"\n{'='*50}\n")
+        f.write(f"TIMESTAMP: {timestamp}\n")
+        f.write(f"PROMPT: {prompt}\n")
+        f.write(f"RESPONSE: {response}\n")
+        f.write(f"{'='*50}\n")
+        
 
 """
 Update the Interactive Loop
@@ -23,11 +38,15 @@ with torch.no_grad():
         char = decode([token_id])
         sys.stdout.write(char)
         sys.stdout.flush()
-        
+        full_response += char # Collect for logging
         # Optional: Add a tiny sleep to make it look like "typing"
         time.sleep(0.02) 
 
 print("\n" + "-"*30)
+
+# Automatically save the conversation
+log_conversation(user_prompt, full_response)
+print("\n\n(Conversation saved to generation_logs.txt)")
 
 """
 To make your model interactive, you can use Python’s input() function. This will pause the script and wait for you to type a "seed" (starting text) before the model begins generating.
@@ -35,7 +54,7 @@ Add this block to the bottom of your tecxlmgenerate.py script:
 Interactive Generation Code
 
 """
-import torch
+
 
 # Ensure your model is in evaluation mode
 model.eval()
