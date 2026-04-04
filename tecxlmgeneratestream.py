@@ -7,6 +7,16 @@ import torch
 Add this at the top of your tecxlmgenerate.py script. It creates a file named generation_logs.txt and appends new conversations to the bottom.
 
 """
+import string
+
+# Define the exact 71 characters
+chars = string.ascii_lowercase + string.ascii_uppercase + string.digits + " !.,:;?-\n"
+stoi = { ch:i for i,ch in enumerate(chars) }
+itos = { i:ch for i,ch in enumerate(chars) }
+
+# Helper functions for the model
+encode = lambda s: [stoi[c] for c in s]
+decode = lambda l: ''.join([itos[i] for i in l])
 
 
 def log_conversation(prompt, response):
