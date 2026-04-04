@@ -5,7 +5,7 @@ from tecxlm import TecXModel
 model_path = Path("tecxlm") / "TecXLM.pth"
 
 #model = TecXModel().generate()
-print(tecxmodelgen creating)
+print(f"tecxmodelgen creating")
 class TecXModelGen(TecXModel):
   def init():
     super.init()
