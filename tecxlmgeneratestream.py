@@ -57,6 +57,9 @@ while True:
     tokens = 500 # Number of characters to generate
     with torch.no_grad():
         # Use the generator function
+        # 1. Initialize an empty string to hold the output
+        full_response = "" 
+        # 2. Start the streaming loop
         for token_id in model.generate_stream(context, tokens, temp, top_k):
             char = decode([token_id])
             sys.stdout.write(char)
