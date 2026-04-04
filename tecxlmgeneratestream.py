@@ -54,7 +54,7 @@ while True:
 
     with torch.no_grad():
         # Use the generator function
-        for token_id in model.generate_stream(context, tokens, temp, top_k):
+        for token_id in model.generate_stream(context, tokens=300, temp, top_k):
             char = decode([token_id])
             sys.stdout.write(char)
             sys.stdout.flush()
