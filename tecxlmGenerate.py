@@ -1,3 +1,4 @@
+import string
 import torch
 import torch.nn as nn
 
@@ -7,9 +8,28 @@ print(f"importing")
 from tecxlm import TecXModel
 #import tecxlm
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
-text="! , . : ; ? C E F H I L M T U W X a b c d e f g h i k l m n o p q r s t u v w x y "
+#text="! , . : ; ? C E F H I L M T U W X a b c d e f g h i k l m n o p q r s t u v w x y "
+
+
+
+# Define the components
+lowercase = string.ascii_lowercase          # a-z (26)
+uppercase = string.ascii_uppercase          # A-Z (26)
+digits = string.digits                      # 0-9 (10)
+special = " !.,:;?-\n"                      # Your 9 special chars (including space and newline)
+
+# Combine them into one string
+chars = lowercase + uppercase + digits + special
+
+# Create the lookup dictionaries
+stoi = { ch:i for i,ch in enumerate(chars) }
+itos = { i:ch for i,ch in enumerate(chars) }
+
+# Define the vocab_size for your model
+vocab_size = len(chars)  # This will be exactly 71
+
 # here are all the unique characters that occur in this text
-chars = sorted(list(set(text.replace(" ",""))))
+##chars = sorted(list(set(text.replace(" ",""))))
 vocab_size = len(chars)
 
 print(''.join(chars))
