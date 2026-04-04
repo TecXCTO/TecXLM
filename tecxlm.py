@@ -26,7 +26,7 @@ with open('input.txt', 'r', encoding='utf-8') as f:
 chars = sorted(list(set(text)))
 vocab_size = len(chars)
 
-##print(''.join(chars))
+print(''.join(chars))
 ##print(vocab_size)
 
 # create a mapping from characters to integers
