@@ -1,16 +1,16 @@
 import torch
 import torch.nn as nn
-#from tecxlm import TecXModel
-import tecxlm
+from tecxlm import TecXModel.generate
+#import tecxlm
 model_path = Path("tecxlm") / "TecXLM.pth"
 
-#model = TecXModel().generate()
+model = TecXModel().generate()
 print(f"tecxmodelgen creating")
 class TecXModelGen(TecXModel):
   def init():
     super.init()
 print(f"tecxmodelgen created")
-model = TecXModelGen()
+##model = TecXModelGen()
 print(f"model veriable creating")
 # torch.save(model.state_dict(),"../TecXLM.pth")
 model.load_state_dict(torch.load(model_path))
