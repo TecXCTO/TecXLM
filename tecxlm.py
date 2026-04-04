@@ -215,7 +215,7 @@ class TecXModel(nn.Module):
             # append sampled index to the running sequence
             idx = torch.cat((idx, idx_next), dim=1) # (B, T+1)
         return idx
-if _name__ == __main__:
+if __name__ == __main__:
     model = TecXModel()
     m = model.to(device)
     # print the number of parameters in the model
