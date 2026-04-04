@@ -7,8 +7,9 @@ print(f"importing")
 from tecxlm import TecXModel
 #import tecxlm
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
+text="! , . : ; ? C E F H I L M T U W X a b c d e f g h i k l m n o p q r s t u v w x y "
 # here are all the unique characters that occur in this text
-chars = sorted(list(set(text)))
+chars = sorted(list(set(text.replace(" ",""))))
 vocab_size = len(chars)
 
 print(''.join(chars))
