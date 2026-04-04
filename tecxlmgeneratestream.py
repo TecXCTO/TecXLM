@@ -1,13 +1,10 @@
+import string
 import sys
 import time
 import datetime
 import torch
-"""
-1. Set Up the Logger
-Add this at the top of your tecxlmgenerate.py script. It creates a file named generation_logs.txt and appends new conversations to the bottom.
 
-"""
-import string
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 # Define the exact 71 characters
 chars = string.ascii_lowercase + string.ascii_uppercase + string.digits + " !.,:;?-\n"
@@ -18,7 +15,11 @@ itos = { i:ch for i,ch in enumerate(chars) }
 encode = lambda s: [stoi[c] for c in s]
 decode = lambda l: ''.join([itos[i] for i in l])
 
+"""
+1. Set Up the Logger
+Add this at the top of your tecxlmgenerate.py script. It creates a file named generation_logs.txt and appends new conversations to the bottom.
 
+"""
 def log_conversation(prompt, response):
     with open("generation_logs.txt", "a", encoding="utf-8") as f:
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
