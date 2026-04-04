@@ -67,7 +67,7 @@ while True:
             sys.stdout.flush()
             full_response += char # Collect for logging
             # Optional: Add a tiny sleep to make it look like "typing"
-            time.sleep(0.02) 
+            time.sleep(0.01) 
     print("\n" + "-"*30)
     # Automatically save the conversation
     log_conversation(user_prompt, full_response)
