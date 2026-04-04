@@ -1,19 +1,20 @@
 import torch
 import torch.nn as nn
-print(f"importing")
-from tecxlm.TecXModel import generate
-#from tecxlm import TecXModel.generate
-#from tecxlm import TecXModel.generate
-#import tecxlm
-model_path = Path("tecxlm") / "TecXLM.pth"
 
-model = TecXModel().generate()
+
+##print(f"importing")
+##from tecxlm.TecXModel import generate
+#from tecxlm import TecXModel
+#import tecxlm
+
+
+model_path = Path("tecxlm") / "TecXLM.pth"
 print(f"tecxmodelgen creating")
 class TecXModelGen(TecXModel):
   def init():
     super.init()
 print(f"tecxmodelgen created")
-##model = TecXModelGen()
+model = TecXModelGen()
 print(f"model veriable creating")
 # torch.save(model.state_dict(),"../TecXLM.pth")
 model.load_state_dict(torch.load(model_path))
