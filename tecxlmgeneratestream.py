@@ -26,8 +26,8 @@ Use sys.stdout.write and flush() to make the characters appear instantly on the 
 # ... inside your 'while True' loop ...
 while True:
     # 1. Get custom text from the user
-    user_input = input("\nEnter your starting text (or type 'exit' to quit): ")
-    
+    #user_input = input("\nEnter your starting text (or type 'exit' to quit): ")
+    user_prompt=input("\nEnter your starting text (or type 'exit' to quit): ")
     if user_input.lower() == 'exit':
         break
     # Encode and setup context
