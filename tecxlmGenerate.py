@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+print(f"importing")
 from tecxlm.TecXModel import generate
 #from tecxlm import TecXModel.generate
 #from tecxlm import TecXModel.generate
