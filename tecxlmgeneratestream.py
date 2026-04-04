@@ -24,29 +24,32 @@ Update the Interactive Loop
 Use sys.stdout.write and flush() to make the characters appear instantly on the same line.
 """
 # ... inside your 'while True' loop ...
+while True:
+    # 1. Get custom text from the user
+    user_input = input("\nEnter your starting text (or type 'exit' to quit): ")
+    
+    if user_input.lower() == 'exit':
+        break
+    # Encode and setup context
+    context_list = [stoi[c] for c in user_prompt if c in stoi]
+    context = torch.tensor([context_list], dtype=torch.long, device=device)
 
-# Encode and setup context
-context_list = [stoi[c] for c in user_prompt if c in stoi]
-context = torch.tensor([context_list], dtype=torch.long, device=device)
+    print(f"\n[TECX LM]: ", end="")
+    sys.stdout.flush()
 
-print(f"\n[TECX LM]: ", end="")
-sys.stdout.flush()
-
-with torch.no_grad():
-    # Use the generator function
-    for token_id in model.generate_stream(context, tokens, temp, top_k):
-        char = decode([token_id])
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        full_response += char # Collect for logging
-        # Optional: Add a tiny sleep to make it look like "typing"
-        time.sleep(0.02) 
-
-print("\n" + "-"*30)
-
-# Automatically save the conversation
-log_conversation(user_prompt, full_response)
-print("\n\n(Conversation saved to generation_logs.txt)")
+    with torch.no_grad():
+        # Use the generator function
+        for token_id in model.generate_stream(context, tokens, temp, top_k):
+            char = decode([token_id])
+            sys.stdout.write(char)
+            sys.stdout.flush()
+            full_response += char # Collect for logging
+            # Optional: Add a tiny sleep to make it look like "typing"
+            time.sleep(0.02) 
+    print("\n" + "-"*30)
+    # Automatically save the conversation
+    log_conversation(user_prompt, full_response)
+    print("\n\n(Conversation saved to generation_logs.txt)")
 
 """
 To make your model interactive, you can use Python’s input() function. This will pause the script and wait for you to type a "seed" (starting text) before the model begins generating.
