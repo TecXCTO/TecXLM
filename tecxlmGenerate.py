@@ -20,7 +20,7 @@ special = " !.,:;?-\n"                      # Your 9 special chars (including sp
 
 # Combine them into one string
 chars = lowercase + uppercase + digits + special
-
+chars = sorted(list(set(chars.replace(" ",""))))
 # Create the lookup dictionaries
 stoi = { ch:i for i,ch in enumerate(chars) }
 itos = { i:ch for i,ch in enumerate(chars) }
