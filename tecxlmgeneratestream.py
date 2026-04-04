@@ -14,7 +14,11 @@ itos = { i:ch for i,ch in enumerate(chars) }
 # Helper functions for the model
 encode = lambda s: [stoi[c] for c in s]
 decode = lambda l: ''.join([itos[i] for i in l])
-
+model_path = "tecxlm/TecXLM.pth"
+# model_path = Path("tecxlm") / "TecXLM.pth"
+print(f"tecxmodelgen creating")
+model = TecXModel(vocab_size=71)
+print(f"tecxmodelgen created")
 """
 1. Set Up the Logger
 Add this at the top of your tecxlmgenerate.py script. It creates a file named generation_logs.txt and appends new conversations to the bottom.
