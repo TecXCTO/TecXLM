@@ -6,7 +6,7 @@ print(f"importing")
 ##from tecxlm.TecXModel import generate
 from tecxlm import TecXModel
 #import tecxlm
-
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 model_path = "tecxlm/TecXLM.pth"
 # model_path = Path("tecxlm") / "TecXLM.pth"
