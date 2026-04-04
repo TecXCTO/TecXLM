@@ -2,9 +2,9 @@ import torch
 import torch.nn as nn
 
 
-##print(f"importing")
+print(f"importing")
 ##from tecxlm.TecXModel import generate
-#from tecxlm import TecXModel
+from tecxlm import TecXModel
 #import tecxlm
 
 
