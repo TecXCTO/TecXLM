@@ -1,5 +1,7 @@
 # Save your work for later
-git stash && git pull         #&& stash pop
+git stash
+git pull
+#stash pop
 python tecxlmgenerate.py --out_dir=tecxlm-outputs
 run
 #
