@@ -8,7 +8,7 @@ from tecxlm import TecXModel
 #import tecxlm
 
 
-model_path = "tecxlm /TecXLM.pth"
+model_path = "tecxlm/TecXLM.pth"
 # model_path = Path("tecxlm") / "TecXLM.pth"
 print(f"tecxmodelgen creating")
 class TecXModelGen(TecXModel):
