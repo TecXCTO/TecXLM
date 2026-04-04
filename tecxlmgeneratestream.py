@@ -10,6 +10,7 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 #chars = string.ascii_lowercase + string.ascii_uppercase + string.digits + " !.,:;?-\n"
 chars = "!,.:?CEFHILMTUWXYabcdefghiklmnopqrstuvwxy"
 chars = sorted(list(set(chars)))
+print(chars)
 stoi = { ch:i for i,ch in enumerate(chars) }
 itos = { i:ch for i,ch in enumerate(chars) }
 
