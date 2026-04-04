@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
-from tecxlm import TecXModel
-
+#from tecxlm import TecXModel
+import tecxlm
 model_path = Path("tecxlm") / "TecXLM.pth"
 
 #model = TecXModel().generate()
