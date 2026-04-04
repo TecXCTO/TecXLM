@@ -7,8 +7,8 @@ from tecxlm import TecXModel
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 # Define the exact 71 characters
-#chars = string.ascii_lowercase + string.ascii_uppercase + string.digits + " !.,:;?-\n"
-chars = "!,.:?CEFHILMTUWXYabcdefghiklmnopqrstuvwxy"
+chars = string.ascii_lowercase + string.ascii_uppercase + string.digits + " !.,:;?-\n"
+##chars = "!,.:?CEFHILMTUWXYabcdefghiklmnopqrstuvwxy"
 chars = sorted(list(set(chars)))
 print(chars)
 stoi = { ch:i for i,ch in enumerate(chars) }
