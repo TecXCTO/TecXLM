@@ -215,26 +215,22 @@ class TecXModel(nn.Module):
             # append sampled index to the running sequence
             idx = torch.cat((idx, idx_next), dim=1) # (B, T+1)
         return idx
-
-def generate_stream(self, idx, max_new_tokens, temperature=1.0, top_k=None):
-    for _ in range(max_new_tokens):
-        # 1. Get predictions
-        idx_cond = idx[:, -block_size:]
-        logits, _ = self(idx_cond)
-        logits = logits[:, -1, :] / temperature
-
-        # 2. Apply Top-K filtering
-        if top_k is not None:
-            v, _ = torch.topk(logits, min(top_k, logits.size(-1)))
-            logits[logits < v[:, [-1]]] = -float('Inf')
-
-        # 3. Sample and Append
-        probs = F.softmax(logits, dim=-1)
-        idx_next = torch.multinomial(probs, num_samples=1)
-        idx = torch.cat((idx, idx_next), dim=1)
-
-        # 4. YIELD the newly generated token index
-        yield idx_next.item() 
+    def generate_stream(self, idx, max_new_tokens, temperature=1.0, top_k=None):
+        for _ in range(max_new_tokens):
+            # 1. Get predictions
+            idx_cond = idx[:, -block_size:]
+            logits, _ = self(idx_cond)
+            logits = logits[:, -1, :] / temperature
+            # 2. Apply Top-K filtering
+            if top_k is not None:
+                v, _ = torch.topk(logits, min(top_k, logits.size(-1)))
+                logits[logits < v[:, [-1]]] = -float('Inf')
+            # 3. Sample and Append
+            probs = F.softmax(logits, dim=-1)
+            idx_next = torch.multinomial(probs, num_samples=1)
+            idx = torch.cat((idx, idx_next), dim=1)
+            # 4. YIELD the newly generated token index
+            yield idx_next.item() 
         
 
 if __name__ == "__main__":
