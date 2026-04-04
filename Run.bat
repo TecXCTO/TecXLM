@@ -1,3 +1,4 @@
+git pull
 python tecxlmgenerate.py --out_dir=tecxlm-outputs
 pause
 run
