@@ -5,7 +5,7 @@ from torch.nn import functional as F
 
 # hyperparameters
 batch_size = 64 # how many independent sequences will we process in parallel?
-block_size = 256 # what is the maximum context length for predictions?
+block_size = 8 #256 # what is the maximum context length for predictions?
 max_iters = 5000
 eval_interval = 500
 learning_rate = 3e-4
@@ -31,10 +31,10 @@ digits = string.digits                      # 0-9 (10)
 special = " !.,:;?-\n"                      # Your 9 special chars (including space and newline)
 
 # Combine them into one string
-#chars = lowercase + uppercase + digits + special
-#chars = sorted(list(set(chars)))
+chars = lowercase + uppercase + digits + special
+chars = sorted(list(set(chars)))
 #chars = sorted(list(set(chars.replace(" ",""))))
-chars = sorted(list(set(text)))
+#chars = sorted(list(set(text)))
 print(chars)
 vocab_size = len(chars)
 
