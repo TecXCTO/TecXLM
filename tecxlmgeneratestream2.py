@@ -25,8 +25,8 @@ model_path = "tecxlm/TecXLM1.pth"
 #model_path = "tecxlm/TecXLM.pth"
 # model_path = Path("tecxlm") / "TecXLM.pth"
 print(f"tecxmodelgen creating")
-model = TecXModel()
-#model = TecXModel(vocab_size=71)
+#model = TecXModel()
+model = TecXModel(vocab_size=71)
 model.load_state_dict(torch.load(model_path))
 ###################checkpoint = torch.load(model_path)
 ##################model_dict = checkpoint["state_dict"]
