@@ -26,14 +26,14 @@ model_path = "tecxlm/TecXLM1.pth"
 print(f"tecxmodelgen creating")
 model = TecXModel()
 #model = TecXModel(vocab_size=71)
-
-checkpoint = torch.load(model_path)
-model_dict = checkpoint["state_dict"]
+model.load_state_dict(torch.load(model_path))
+###################checkpoint = torch.load(model_path)
+##################model_dict = checkpoint["state_dict"]
 ##model_dict = model.state_dict()
 # Filter out layers with wrong shapes (like lm_head)
 ####pretrained_dict = {k: v for k, v in checkpoint.items() if k in model_dict and v.size() == model_dict[k].size()}
 #####model_dict.update(pretrained_dict)
-model.load_state_dict(model_dict, strict=False)
+##########################################model.load_state_dict(model_dict, strict=False)
 #model.to(device)
 # Ensure your model is in evaluation mode
 model.eval()
