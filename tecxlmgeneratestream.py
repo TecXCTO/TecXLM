@@ -29,8 +29,10 @@ pretrained_dict = {k: v for k, v in checkpoint.items() if k in model_dict and v.
 model_dict.update(pretrained_dict)
 model.load_state_dict(model_dict, strict=False)
 
-
+# Ensure your model is in evaluation mode
+model.eval()
 print(f"tecxmodelgen created")
+
 """
 1. Set Up the Logger
 Add this at the top of your tecxlmgenerate.py script. It creates a file named generation_logs.txt and appends new conversations to the bottom.
@@ -93,7 +95,7 @@ Interactive Generation Code
 
 
 # Ensure your model is in evaluation mode
-model.eval()
+#model.eval()
 
 print("-" * 30)
 print("TecX LLM Generation Mode")
