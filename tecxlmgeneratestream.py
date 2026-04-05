@@ -66,7 +66,7 @@ while True:
     # Encode and setup context
     #context_list = [stoi[c] for c in user_prompt if c in stoi]
     #context = torch.tensor([context_list], dtype=torch.long, device=device)
-    context = torch.tensor([encode(user_prompt)], dtype=torch.long)
+    context = torch.tensor([encode(user_prompt)], dtype=torch.long).to(device)
     #data = torch.tensor(encode(user_prompt), dtype=torch.long)
     print(f"\n[TECX LM]: ", end="")
     sys.stdout.flush()
