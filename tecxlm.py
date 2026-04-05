@@ -38,7 +38,7 @@ chars = sorted(list(set(chars)))
 ###
 #chars = sorted(list(set(text)))
 vocab_size = len(chars)
-
+print(chars)
 print(''.join(chars))
 ##print(vocab_size)
 
