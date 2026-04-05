@@ -32,11 +32,11 @@ model_dict = model.state_dict()
 pretrained_dict = {k: v for k, v in checkpoint.items() if k in model_dict and v.size() == model_dict[k].size()}
 model_dict.update(pretrained_dict)
 model.load_state_dict(model_dict, strict=False)
-model.to(device)
+#model.to(device)
 # Ensure your model is in evaluation mode
 model.eval()
 print(f"tecxmodelgen created")
-
+m = model.to(device)
 """
 1. Set Up the Logger
 Add this at the top of your tecxlmgenerate.py script. It creates a file named generation_logs.txt and appends new conversations to the bottom.
@@ -78,7 +78,8 @@ while True:
         # 1. Initialize an empty string to hold the output
         full_response = "" 
         # 2. Start the streaming loop
-        for token_id in model.generate_stream(context, tokens, temp, top_k):
+        #for token_id in model.generate_stream(context, tokens, temp, top_k):
+        for token_id in m.generate_stream(context, tokens, temp, top_k):
             char = decode([token_id])
             sys.stdout.write(char)
             sys.stdout.flush()
