@@ -266,7 +266,7 @@ if __name__ == "__main__":
         loss.backward()
         optimizer.step()
     #torch.save(m.state_dict(),"../TecXLM.pth")
-    torch.save({'state_dict': model.state_dict(), 'chars': chars}, 'model.pth')
+    torch.save({'state_dict': model.state_dict(), 'chars': chars}, 'tecxlm/tecxmodel.pth')
     #torch.save({'state_dict': model.state_dict(), 'chars': char_list}, 'model.pth')
 
     
