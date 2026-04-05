@@ -21,3 +21,14 @@ elif 'vocab' in checkpoint:
 else:
     print("The list is not in the .pth file; it is defined in your tecxlm.py script.")
     
+
+# Load your file
+#checkpoint = torch.load('model.pth', map_location='cpu')
+
+# If it's a state_dict, find the last layer
+if isinstance(checkpoint, dict):
+    # Common names for the last layer are 'fc.bias', 'classifier.bias', or 'out.bias'
+    last_layer_key = list(checkpoint.keys())[-1] 
+    num_chars = checkpoint[last_layer_key].shape[0]
+    print(f"Model is configured for {num_chars} characters.")
+    
