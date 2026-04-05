@@ -29,7 +29,7 @@ model_dict = model.state_dict()
 pretrained_dict = {k: v for k, v in checkpoint.items() if k in model_dict and v.size() == model_dict[k].size()}
 model_dict.update(pretrained_dict)
 model.load_state_dict(model_dict, strict=False)
-
+model.to(device)
 # Ensure your model is in evaluation mode
 model.eval()
 print(f"tecxmodelgen created")
