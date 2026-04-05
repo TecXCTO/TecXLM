@@ -55,8 +55,8 @@ while True:
     print(f"\n[TECX LM]: ", end="")
     sys.stdout.flush()
     # Set the creativity (temperature) and focus (top_k)
-    temp = 1.0  # 1.0 is standard; higher is more creative, lower is more focused
-    top_k = 5   # Keeps the model focused on the top 5 most likely characters
+    temp = 0 # 1.0  # 1.0 is standard; higher is more creative, lower is more focused
+    top_k = None # 5   # Keeps the model focused on the top 5 most likely characters
     tokens = 500 # Number of characters to generate
     with torch.no_grad():
         # Use the generator function
