@@ -32,15 +32,15 @@ digits = string.digits                      # 0-9 (10)
 special = " !.,:;?-\n"                      # Your 9 special chars (including space and newline)
 
 # Combine them into one string
-chars = lowercase + uppercase + digits + special
-chars = sorted(list(set(chars)))
+#####chars = lowercase + uppercase + digits + special
+#####chars = sorted(list(set(chars)))
 #chars = sorted(list(set(chars.replace(" ",""))))
 ###
-#chars = sorted(list(set(text)))
+chars = sorted(list(set(text)))
 vocab_size = len(chars)
 print(chars)
 print(''.join(chars))
-##print(vocab_size)
+print(vocab_size)
 
 # create a mapping from characters to integers
 stoi = { ch:i for i,ch in enumerate(chars) }
