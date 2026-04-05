@@ -12,6 +12,7 @@ chars = " !,-.0123456789:;?ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 ##chars = "!,.:?CEFHILMTUWXYabcdefghiklmnopqrstuvwxy"
 chars = sorted(list(set(chars)))
 print(chars)
+print(len(chars))
 stoi = { ch:i for i,ch in enumerate(chars) }
 itos = { i:ch for i,ch in enumerate(chars) }
 
@@ -21,8 +22,8 @@ decode = lambda l: ''.join([itos[i] for i in l])
 model_path = "tecxlm/TecXLM.pth"
 # model_path = Path("tecxlm") / "TecXLM.pth"
 print(f"tecxmodelgen creating")
-model = TecXModel()
-#model = TecXModel(vocab_size=71)
+#model = TecXModel()
+model = TecXModel(vocab_size=71)
 
 checkpoint = torch.load(model_path)
 model_dict = model.state_dict()
