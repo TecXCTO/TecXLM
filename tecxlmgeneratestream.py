@@ -19,7 +19,7 @@ itos = { i:ch for i,ch in enumerate(chars) }
 # Helper functions for the model
 encode = lambda s: [stoi[c] for c in s]
 decode = lambda l: ''.join([itos[i] for i in l])
-model_path = "tecxlm/tecxmodel.pth"
+model_path = "tecxlm/tecxmodel1.pth"
 #model_path = "tecxlm/TecXLM.pth"
 # model_path = Path("tecxlm") / "TecXLM.pth"
 print(f"tecxmodelgen creating")
@@ -64,9 +64,10 @@ while True:
     if user_prompt.lower() == 'exit':
         break
     # Encode and setup context
-    context_list = [stoi[c] for c in user_prompt if c in stoi]
-    context = torch.tensor([context_list], dtype=torch.long, device=device)
-
+    #context_list = [stoi[c] for c in user_prompt if c in stoi]
+    #context = torch.tensor([context_list], dtype=torch.long, device=device)
+    context = torch.tensor(encode(user_prompt), dtype=torch.long)
+    #data = torch.tensor(encode(user_prompt), dtype=torch.long)
     print(f"\n[TECX LM]: ", end="")
     sys.stdout.flush()
     # Set the creativity (temperature) and focus (top_k)
@@ -80,7 +81,8 @@ while True:
         # 2. Start the streaming loop
         #for token_id in model.generate_stream(context, tokens, temp, top_k):
         for token_id in m.generate_stream(context, tokens, temp, top_k):
-            char = decode([token_id])
+            char = decode(token_id)
+            ##char = decode([token_id])
             sys.stdout.write(char)
             sys.stdout.flush()
             full_response += char # Collect for logging
