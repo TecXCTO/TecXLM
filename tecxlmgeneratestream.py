@@ -20,6 +20,7 @@ decode = lambda l: ''.join([itos[i] for i in l])
 model_path = "tecxlm/TecXLM.pth"
 # model_path = Path("tecxlm") / "TecXLM.pth"
 print(f"tecxmodelgen creating")
+#model = TecXModel()
 model = TecXModel(vocab_size=71)
 
 checkpoint = torch.load(model_path)
