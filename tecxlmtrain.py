@@ -32,8 +32,8 @@ special = " !.,:;?-\n"                      # Your 9 special chars (including sp
 
 # Combine them into one string
 chars = lowercase + uppercase + digits + special
-chars = sorted(list(set(chars.replace(" ",""))))
-
+chars = sorted(list(set(chars)))
+#chars = sorted(list(set(chars.replace(" ",""))))
 #chars = sorted(list(set(text)))
 vocab_size = len(chars)
 
