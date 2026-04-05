@@ -23,7 +23,7 @@ with open('inputs/inputs.txt', 'r', encoding='utf-8') as f:
     text = f.read()
 
 # here are all the unique characters that occur in this text
-"""
+####
 # Define the components
 lowercase = string.ascii_lowercase          # a-z (26)
 uppercase = string.ascii_uppercase          # A-Z (26)
@@ -32,9 +32,10 @@ special = " !.,:;?-\n"                      # Your 9 special chars (including sp
 
 # Combine them into one string
 chars = lowercase + uppercase + digits + special
-chars = sorted(list(set(chars.replace(" ",""))))
-"""
-chars = sorted(list(set(text)))
+chars = sorted(list(set(chars)))
+#chars = sorted(list(set(chars.replace(" ",""))))
+###
+#chars = sorted(list(set(text)))
 vocab_size = len(chars)
 
 print(''.join(chars))
