@@ -9,8 +9,8 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 # Define the exact 71 characters
 #chars = string.ascii_lowercase + string.ascii_uppercase + string.digits + " !.,:;?-\n"
-#chars = "\n !,-.0123456789:;?ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-chars = "!,.:?CEFHILMTUWXYabcdefghiklmnopqrstuvwxy"
+chars = "\n !,-.0123456789:;?ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+#chars = "!,.:?CEFHILMTUWXYabcdefghiklmnopqrstuvwxy"
 chars = sorted(list(set(chars)))
 print(chars)
 print(len(chars))
