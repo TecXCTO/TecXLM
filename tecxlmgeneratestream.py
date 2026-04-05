@@ -21,6 +21,15 @@ model_path = "tecxlm/TecXLM.pth"
 # model_path = Path("tecxlm") / "TecXLM.pth"
 print(f"tecxmodelgen creating")
 model = TecXModel(vocab_size=71)
+
+checkpoint = torch.load(model_path)
+model_dict = model.state_dict()
+# Filter out layers with wrong shapes (like lm_head)
+pretrained_dict = {k: v for k, v in checkpoint.items() if k in model_dict and v.size() == model_dict[k].size()}
+model_dict.update(pretrained_dict)
+model.load_state_dict(model_dict, strict=False)
+
+
 print(f"tecxmodelgen created")
 """
 1. Set Up the Logger
