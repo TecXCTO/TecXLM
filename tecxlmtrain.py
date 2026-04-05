@@ -35,6 +35,7 @@ chars = lowercase + uppercase + digits + special
 chars = sorted(list(set(chars)))
 #chars = sorted(list(set(chars.replace(" ",""))))
 #chars = sorted(list(set(text)))
+print(chars)
 vocab_size = len(chars)
 
 print(''.join(chars))
