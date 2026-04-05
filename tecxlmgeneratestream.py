@@ -129,7 +129,8 @@ while True:
     # Adjust max_new_tokens for longer or shorter responses
     generated_indices = model.generate(context, max_new_tokens=200)[0].tolist()
     
-    response = decode(generated_indices)
+    #response = decode(generated_indices)
+    response = generated_indices
     print(f"\nModel Output:\n{response}")
     print("-" * 30)
 
