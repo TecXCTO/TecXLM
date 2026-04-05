@@ -19,7 +19,8 @@ itos = { i:ch for i,ch in enumerate(chars) }
 # Helper functions for the model
 encode = lambda s: [stoi[c] for c in s]
 decode = lambda l: ''.join([itos[i] for i in l])
-model_path = "tecxlm/tecxmodel1.pth"
+model_path = "tecxlm/TecXLM1.pth"
+######model_path = "tecxlm/tecxmodel1.pth"
 #model_path = "tecxlm/TecXLM.pth"
 # model_path = Path("tecxlm") / "TecXLM.pth"
 print(f"tecxmodelgen creating")
