@@ -37,6 +37,7 @@ model.load_state_dict(model_dict, strict=False)
 model.eval()
 print(f"tecxmodelgen created")
 m = model.to(device)
+m.eval()
 """
 1. Set Up the Logger
 Add this at the top of your tecxlmgenerate.py script. It creates a file named generation_logs.txt and appends new conversations to the bottom.
