@@ -23,7 +23,6 @@ torch.manual_seed(1337)
 # wget https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
 with open('inputs/inputs.txt', 'r', encoding='utf-8-sig') as f:
     text = f.read()
-print(f"text={text}")##
 # here are all the unique characters that occur in this text
 ####
 # Define the components
@@ -34,7 +33,8 @@ special = " !.,:;?-\n"                      # Your 9 special chars (including sp
 
 # Combine them into one string
 chars = sorted(list(set(text)))
-chars = lowercase + uppercase + digits + special+chars
+print(f"text latters ={chars}")##
+chars = lowercase + uppercase + digits + special + ''.join(chars)
 print(f"chars before sorted = {chars}")##
 chars = sorted(list(set(chars)))
 #chars = sorted(list(set(chars.replace(" ",""))))
