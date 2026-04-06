@@ -306,10 +306,10 @@ if __name__ == "__main__":
         temp = 0.4 # 1.0 is standard; higher is more creative, lower is more focused
         top_k = None # 5   # Keeps the model focused on the top 5 most likely characters
         tokens = 500 # Number of characters to generate
+        # 1. Initialize an empty string to hold the output
+        full_response = "" 
         with torch.no_grad():
             # Use the generator function
-            # 1. Initialize an empty string to hold the output
-            full_response = "" 
             # 2. Start the streaming loop
             #for token_id in model.generate_stream(context, tokens, temp, top_k):
             for token_id in m.generate_stream(context, tokens, temp, top_k):
@@ -326,8 +326,8 @@ if __name__ == "__main__":
     
     """
     # generate from the model
-    context = torch.zeros((1, 1), dtype=torch.long, device=device)
-    print(decode(m.generate(context, max_new_tokens=500)[0].tolist()))
+    ##context = torch.zeros((1, 1), dtype=torch.long, device=device)
+    ##print(decode(m.generate(context, max_new_tokens=500)[0].tolist()))
     #open('more.txt', 'w').write(decode(m.generate(context, max_new_tokens=10000)[0].tolist()))
-    open('TecXLM_learned.txt', 'w').write(decode(m.generate(context, max_new_tokens=10000)[0].tolist()))
+    #open('TecXLM_learned.txt', 'w').write(decode(m.generate(context, max_new_tokens=10000)[0].tolist()))
     """
