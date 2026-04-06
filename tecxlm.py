@@ -21,9 +21,9 @@ dropout = 0.2
 torch.manual_seed(1337)
 
 # wget https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
-with open('inputs/inputs.txt', 'r', encoding='utf-8') as f:
+with open('inputs/inputs.txt', 'r', encoding='utf-8-sig') as f:
     text = f.read()
-
+print(f"text={text}")##
 # here are all the unique characters that occur in this text
 ####
 # Define the components
@@ -33,11 +33,13 @@ digits = string.digits                      # 0-9 (10)
 special = " !.,:;?-\n"                      # Your 9 special chars (including space and newline)
 
 # Combine them into one string
-##chars = lowercase + uppercase + digits + special
-##chars = sorted(list(set(chars)))
+chars = sorted(list(set(text)))
+chars = lowercase + uppercase + digits + special+chars
+print(f"chars before sorted = {chars}")##
+chars = sorted(list(set(chars)))
 #chars = sorted(list(set(chars.replace(" ",""))))
 ###
-chars = sorted(list(set(text)))
+#chars = sorted(list(set(text)))
 vocab_size = len(chars)
 print(chars)
 print(''.join(chars))
