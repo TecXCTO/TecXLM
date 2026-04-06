@@ -66,8 +66,10 @@ while True:
     # 1. Get custom text from the user
     #user_input = input("\nEnter your starting text (or type 'exit' to quit): ")
     user_prompt=input("\nEnter your starting text (or type 'exit' to quit): ")
-    if user_prompt.lower() == 'exit':
+    if user_prompt.lower() in ['exit', 'quit']:
         break
+    length = input("How many tokens to generate? (default 100): ")
+    num_tokens = int(length) if length.isdigit() else 100
     # Encode and setup context
     #context_list = [stoi[c] for c in user_prompt if c in stoi]
     #context = torch.tensor([context_list], dtype=torch.long, device=device)
@@ -78,14 +80,16 @@ while True:
     # Set the creativity (temperature) and focus (top_k)
     temp = 0.4 # 1.0 is standard; higher is more creative, lower is more focused
     top_k = None # 5   # Keeps the model focused on the top 5 most likely characters
-    tokens = 500 # Number of characters to generate
+    tokens = 500 
+    # max_new_tokens=num_tokens# Number of characters to generate
     with torch.no_grad():
         # Use the generator function
         # 1. Initialize an empty string to hold the output
         full_response = "" 
         # 2. Start the streaming loop
         #for token_id in model.generate_stream(context, tokens, temp, top_k):
-        for token_id in m.generate_stream(context, tokens, temp, top_k):
+        #for token_id in m.generate_stream(context, tokens, temp, top_k):
+        for token_id in m.generate_stream(context, num_tokens, temp, top_k):
             ##char = decode(token_id)
             char = decode([token_id])
             sys.stdout.write(char)
