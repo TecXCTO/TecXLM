@@ -1,6 +1,6 @@
 # For PyTorch to ONNX (built-in, but need ONNX library)
 pip install onnx
-
+py -m pip install onnxscript
 # For TensorFlow to ONNX
 pip install tf2onnx
 
