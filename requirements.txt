@@ -5,6 +5,7 @@ PyTorch
 pytorch
 # For PyTorch to ONNX (built-in, but need ONNX library)
 onnx
+onnxscript
 # For TensorFlow to ONNX
 tf2onnx
 # To run and test the converted models on your PC or Raspberry Pi
