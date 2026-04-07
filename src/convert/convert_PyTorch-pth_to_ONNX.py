@@ -1,9 +1,12 @@
 import torch
 import torch.onnx
-
+from tecxlmtrain import TecXModel
+model_path = "tecxlm/tecxmodel1.pth"
 # 1. Load your trained model
-model = YourModelClass()
-model.load_state_dict(torch.load('model_checkpoint.pth')['model_state_dict'])
+#model = YourModelClass()
+model = TecXModel()
+#model.load_state_dict(torch.load('model_checkpoint.pth')['model_state_dict'])
+model.load_state_dict(torch.load(model_path)['state_dict'])
 model.eval() # Set to evaluation mode
 
 # 2. Create dummy input (match your model's input shape, e.g., 1 image, 3 channels, 224x224)
