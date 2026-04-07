@@ -1,6 +1,6 @@
 import torch
 import torch.onnx
-from ...tecxlmtrain import TecXModel
+from .....tecxlmtrain import TecXModel
 model_path = "tecxlm/tecxmodel1.pth"
 # 1. Load your trained model
 #model = YourModelClass()
