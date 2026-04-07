@@ -31,11 +31,14 @@ digits = string.digits                      # 0-9 (10)
 special = " !.,:;?-\n"                      # Your 9 special chars (including space and newline)
 
 # Combine them into one string
-chars = lowercase + uppercase + digits + special
+chars = sorted(list(set(text)))
+chars = lowercase + uppercase + digits + special + ''.join(chars)
 chars = sorted(list(set(chars)))
 #chars = sorted(list(set(chars.replace(" ",""))))
 #chars = sorted(list(set(text)))
+
 print(chars)
+
 vocab_size = len(chars)
 
 print(''.join(chars))
