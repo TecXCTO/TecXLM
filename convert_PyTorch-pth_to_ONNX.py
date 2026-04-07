@@ -17,8 +17,11 @@ class ExportModel(torch.nn.Module):
 
     def forward(self, x):
         # Only return the first element (logits) if it's a tuple
-        output = self.model(x)
-        return output[0] if isinstance(output, tuple) else output
+        ##output = self.model(x)
+        ##return output[0] if isinstance(output, tuple) else output
+        # Explicitly only return the first element (logits)
+        logits, _ = self.model(idx) 
+        return logits
 
 # Use this wrapper for exporting
 export_model = ExportModel(model)
