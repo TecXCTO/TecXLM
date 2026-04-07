@@ -25,14 +25,23 @@ class ExportModel(torch.nn.Module):
 
 # Use this wrapper for exporting
 export_model = ExportModel(model)
+export_model.eval() 
 
 # 2. Create dummy input (match your model's input shape, e.g., 1 image, 3 channels, 224x224)
 dummy_input = torch.randn(1, 3, 224, 224) 
 
 # 3. Export to ONNX
+"""
 torch.onnx.export(export_model, dummy_input, "model.onnx", export_params=True, 
                   opset_version=12, 
                   do_constant_folding=True)
+"""
+# Change this:
+##torch.onnx.export(export_model, dummy_input, "model.onnx", export_params=True)
+
+# To this:
+torch.onnx.export(export_model, dummy_input, "model.onnx", export_params=True, opset_version=18)
+
 """
 torch.onnx.export(model, dummy_input, "model.onnx", 
                   export_params=True, 
