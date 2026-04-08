@@ -48,5 +48,6 @@ import uvicorn
 
 if __name__ == "__main__":
     # Change 'main' to the name of your python file if it is different
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    #uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("app", host="127.0.0.1", port=8000, reload=True)
     
