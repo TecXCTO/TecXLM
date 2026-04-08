@@ -42,3 +42,11 @@ async def predict(data: list[float]):
     
     return {"prediction": output.tolist()}
 
+import uvicorn
+
+# ... (all your existing app and lifespan code) ...
+
+if __name__ == "__main__":
+    # Change 'main' to the name of your python file if it is different
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    
