@@ -1,7 +1,7 @@
 import torch
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from src/server/tecxlmserve import TecXModel
+from src.server.tecxlmserve import TecXModel
 #from tecxlmserve import TecXModel
 
 # 1. Create a dictionary or object to store the model globally
