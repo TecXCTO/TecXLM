@@ -1,17 +1,25 @@
 import torch
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
+from tecxlmserve import TecXModel
 
 # 1. Create a dictionary or object to store the model globally
 ml_models = {}
-
+model_path="../../tecxlm/tecxmodel1.pth"
+chars=""
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # --- Startup: Load the model into memory ---
     print("Loading model...")
     # Replace 'MyModelClass' with your actual model class
-    model = MyModelClass() 
-    model.load_state_dict(torch.load("model_weights.pth", map_location="cpu"))
+    model = TecXModel()
+    checkpoints=torch.load(model_path, map_location="cpu")
+    chars=checkpoints[chars]
+    model.load_state_dict(checkpoints[state_dict])
+    #model.load_state_dict(torch.load(model_path, map_location="cpu"))
+    
+    
+    #model.load_state_dict(torch.load("model_weights.pth", map_location="cpu"))
     model.eval()
     
     ml_models["my_model"] = model
