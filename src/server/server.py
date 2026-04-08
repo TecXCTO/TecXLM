@@ -1,10 +1,16 @@
 import torch
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-import tecxlmserve as ts
+from src.server import tecxlmserve as ts
+#import tecxlmserve as ts
 #from .src.server.tecxlmserve import TecXModel
 #from .tecxlmserve import TecXModel
-
+"""
+For Windows (Command Prompt):
+cmd
+set PYTHONPATH=src
+uvicorn src.server.server:app --reload
+"""
 # 1. Create a dictionary or object to store the model globally
 ml_models = {}
 model_path="../../tecxlm/tecxmodel1.pth"
