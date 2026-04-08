@@ -1,8 +1,9 @@
 import torch
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
+import tecxlmserve as ts
 #from .src.server.tecxlmserve import TecXModel
-from .tecxlmserve import TecXModel
+#from .tecxlmserve import TecXModel
 
 # 1. Create a dictionary or object to store the model globally
 ml_models = {}
@@ -13,7 +14,7 @@ async def lifespan(app: FastAPI):
     # --- Startup: Load the model into memory ---
     print("Loading model...")
     # Replace 'MyModelClass' with your actual model class
-    model = TecXModel()
+    model = ts.TecXModel()
     checkpoints=torch.load(model_path, map_location="cpu")
     chars=checkpoints[chars]
     model.load_state_dict(checkpoints[state_dict])
